@@ -1,0 +1,27 @@
+ {% extends 'base.html' %}
+ 
+ {% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+        <div class = "card">
+            
+            <h1 class = 'text-center'>{{forum.title}} </h1>
+        
+            
+            {%for x in a%}
+            <div class="card">
+                <div class="card-header">
+                    <strong>{{x.sender}}</strong> in response to: <small>{{x.receiver}}</small>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{x.text}}</p>
+                    <a href="/reply/{{x.id}}" class="btn btn-primary">reply</a>
+                </div>
+            </div>
+            {%endfor%}
+        </ul>
+        </div>
+</div>
+</div>
+{% endblock %} 

@@ -1,0 +1,39 @@
+{%extends 'base.html'%}
+{% block content %}
+<a href = "/hub/{{APC}}"> <button class="btn btn-primary">To {{APC}} hub</button></a>
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+        <div class = 'card'>
+            <h1 class = "text-center">Making a new post in the {{APC}} Forums!</h1>
+            <form method = 'post'>
+                  {% csrf_token %}
+                {% load widget_tweaks %}
+                {% for field in topicForm %}
+                
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {% render_field field class="form-control" %}
+                    
+                    
+                    
+                </div>
+                {% endfor %}
+                {% for field in postForm %}
+                
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {% render_field field class="form-control" %}
+                    
+                    
+                    
+                </div>
+                {% endfor %}
+
+                
+            
+            <span class = "text-center"><button  type = 'submit'class="btn btn-warning btn-lg btn-block">Create Post</button></span>
+            </form>
+        </div>
+        
+    </div>
+    {% endblock %}

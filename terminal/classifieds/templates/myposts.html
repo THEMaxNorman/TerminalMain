@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Your Posts</h2>
+<div class="list-group list-group-flush">
+{% for x in end %}
+{% if x.active is True %}
+    <a href = '/post/{{x.id}}/' class="list-group-item list-group-item-action list-group-item-info"> <strong>{{x.header}}</strong> <small>{{x.time}}</small> </a> 
+ {%else%}
+ <a href = '/post/{{x.id}}/' class="list-group-item list-group-item-action list-group-item-danger"> <strong>{{x.header}}</strong> <small>{{x.time}}</small> </a> 
+  {% endif %}
+{% endfor %}
+</ul> 
+{% csrf_token %}
+
+{% endblock %} 

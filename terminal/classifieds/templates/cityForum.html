@@ -1,0 +1,39 @@
+{%extends 'base.html'%}
+{% block content %}
+<a href = "/hub/{{APC}}"> <button class="btn btn-primary">To {{APC}} hub</button></a>
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+        <div class = 'card'>
+            <h1 class = "text-center">Welcome to the {{APC}} Forums!</h1>
+            <span class = "text-center"><a href = "newTopic"><button class="btn btn-secondary btn-lg btn-block">Make a new post</button></a></span>
+            <ul class="list-group list-group-flush ">
+                
+                
+                   <a href = 'Delay Info'> <button class="btn btn-danger btn-lg btn-block">Delay Info</button></a>
+                
+                
+                     <a href = "Airport Tips/Hacks"> <button class="btn btn-warning btn-lg btn-block">Airport Tips/Hacks</button></a>
+               
+               
+                    <a href =  "Things to do in the Area"> <button class="btn btn-info btn-lg btn-block">Things to do in the Area</button></a>
+                
+                
+                     <a href = 'NTR'> <button class="btn btn-success btn-lg btn-block">NTR</button></a>
+                
+               
+                
+            </ul>
+            
+                </div>
+                <br>
+            <div class = 'card'>
+                <h1 class = "text-center">All Posts</h1>
+            <ul class="list-group list-group-flush ">
+                {%for head in end%}
+                <a href ='/forumPost/{{head.id}}'><li class = 'list-group-item'> {{head.title}}</li></a>
+                {%endfor%}
+            </ul>
+        </div>
+        
+    </div>
+    {% endblock %}

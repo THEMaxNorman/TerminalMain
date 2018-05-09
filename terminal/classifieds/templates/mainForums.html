@@ -1,0 +1,26 @@
+ {% extends 'base.html' %}
+ {% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+        <div class = 'card'>
+            <h1 class = "text-center">Welcome to the Forums!</h1>
+            
+        </div>
+        <br>
+        <div class = 'card'>
+            <p class = "text-center"> We organize our forums by their Aiport Code (i.e PDX, LAX, MSP) so search here:</p>
+            <div class = "text-center">
+            <form method = 'post'>
+                {% csrf_token %}
+                {{form}}
+                    <button class ="btn btn-outline-success " type="submit">Search</button>
+                    </form>
+            <div>
+                <p>Make sure you read the forums rules <a href = '#'>here</a> before you start posting!</p>
+            
+        </div>
+
+    </div>
+</div>
+{% endblock %} 

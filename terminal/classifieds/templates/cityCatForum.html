@@ -1,0 +1,23 @@
+{%extends 'base.html'%}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+        <div class = 'card'>
+            <h1 class = "text-center"><a href = '/forum/{{APC}}'>Welcome to the {{APC}} Forums!</a></h1>
+            <span class = "text-center"><a href = "newTopic"><button class="btn btn-secondary btn-lg btn-block">Make a new post</button></a></span>
+            
+            
+                </div>
+                <br>
+            <div class = 'card'>
+                <h1 class = "text-center">All {{catergo}} Posts</h1>
+            <ul class="list-group list-group-flush ">
+                {%for head in end%}
+                <a href ='/forumPost/{{head.id}}'><li class = 'list-group-item'> {{head.title}}</li></a>
+                {%endfor%}
+            </ul>
+        </div>
+        
+    </div>
+    {% endblock %}

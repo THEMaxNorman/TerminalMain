@@ -1,0 +1,39 @@
+{%extends 'base.html'%}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+        
+        <div class="card">
+            <div class="card-header">
+                <strong>{{x.sender}}</strong> in response to: <small>{{x.receiver}}</small>
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{x.text}}</p>
+                
+            </div>
+        </div>
+        <div class = 'card'>
+            <h1 class = "text-center">Reply!</h1>
+            <form method = 'post'>
+                  {% csrf_token %}
+                {% load widget_tweaks %}
+                {% for field in form %}
+                
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {% render_field field class="form-control" %}
+                    
+                    
+                    
+                </div>
+                {% endfor %}
+                
+
+                
+            
+            <span class = "text-center"><button  type = 'submit'class="btn btn-warning btn-lg btn-block">Reply</button></span>
+            </form>
+        </div>
+        
+    </div>
+    {% endblock %}

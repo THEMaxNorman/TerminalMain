@@ -1,0 +1,71 @@
+ {% extends 'base.html' %}
+ 
+ {% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+<div class="{{z}}" >
+
+  
+  <div class="card-body">
+  <h2 class="card-title"> {{post.header}}</h2>
+    <h3 class="card-subtitle mb-2 text-muted">{{post.poster.username}}, located in: {{post.airport}}</h3>
+  {{post.body}}</div> 
+  <div class="card-footer">{{post.time}}</div>
+</div>
+<div class="card" >
+<ul class="list-group list-group-flush">
+{%for a in Messages%}
+
+<li class = 'list-group-item  list-group-item-primary'><strong>{{a.sender}}: </strong>{{a.text}} <small>{{a.time}}</small></li>
+
+
+
+{%endfor%}
+</ul>
+<form method = 'post'>
+
+  {% csrf_token %}
+            
+   {% load widget_tweaks %}
+
+{% if form.non_field_errors %}
+  <div class="alert alert-danger" role="alert">
+    {% for error in form.non_field_errors %}
+      <p{% if forloop.last %} class="mb-0"{% endif %}>{{ error }}</p>
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% for field in form %}
+  <div class="form-group">
+    {{ field.label_tag }}
+ <input type="hidden" name="D" value= 'True'>
+    {% if form.is_bound %}
+      {% if field.errors %}
+        {% render_field field class="form-control is-invalid" %}
+        {% for error in field.errors %}
+          <div class="invalid-feedback">
+            {{ error }}
+          </div>
+        {% endfor %}
+      {% else %}
+        {% render_field field class="form-control is-valid" %}
+      {% endif %}
+    {% else %}
+      {% render_field field class="form-control" %}
+    {% endif %}
+
+    {% if field.help_text %}
+      <small class="form-text text-muted">
+        {{ field.help_text }}
+      </small>
+    {% endif %}
+  </div>
+{% endfor %}
+
+<button type = 'submit' class="btn btn-primary">Send Message</button>
+</div>
+</div>
+</div>
+{% endblock %} 

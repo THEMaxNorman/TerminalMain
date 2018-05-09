@@ -1,0 +1,26 @@
+ {% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+<h1 class = "text-center">Welcome To The Classified section</h1>
+<a href = '/createnewpost' class="btn btn-primary btn-block">Create a new post</a>
+<br>
+
+<div class = 'card'>
+    <div class = "text-center">
+        <p>View posts by the Airport code (i.e. PDX, LAX, MSP)</p>
+        <form method = 'post'>
+            {% csrf_token %}
+            {{form}}
+            <button class ="btn btn-success btn-block" type="submit">Search</button>
+        </form>
+        </div>
+</div>
+<br>
+<a href = '/myposts' class="btn btn-warning btn-block">View your posts</a>
+
+</div>
+    </div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{%extends 'base.html'%}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+        <div class = 'card'>
+            <h1 class = "text-center">{{APC}}</h1>
+            
+            
+
+            
+                </div>
+
+                <br>
+                <div >
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Extras</h5>
+                                <p class="card-text">Maps, Guides, Coupons and much more</p>
+                                <a href="/extras/{{APC}}" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                        <div class="col-sm-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Classifieds</h5>
+                                    <p class="card-text">Currency Exchange, Buying, Selling and Giving</p>
+                                    <a href="/classified/{{APC}}" class="btn btn-primary">Go somewhere</a>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Forums</h5>
+                                <p class="card-text">Discuss with the community and get community tips and feedback</p>
+                                <a href="/forum/{{APC}}" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+    {% endblock %}
