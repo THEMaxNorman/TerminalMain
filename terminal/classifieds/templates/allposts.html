@@ -1,16 +1,45 @@
 {% extends 'base.html' %}
 {% block content %}
-<a href = "/hub/{{apc}}"> <button class="btn btn-primary">To {{APC}} hub</button></a>
-<h2>{{apc}} Posts</h2>
-<div class="list-group list-group-flush">
-{% for x in end %}
-{% if x.active %}
-    <a href = '/post/{{x.id}}/' class="list-group-item list-group-item-action list-group-item-info"> <strong>{{x.header}}</strong> <small>{{x.time}}</small> <small>{{x.poster.username}}</small></a> 
- {%else%}
- <a href = '/post/{{x.id}}/' class="list-group-item list-group-item-action list-group-item-danger"> <strong>{{x.header}}</strong> <small>{{x.time}}</small> <small>{{x.poster.username}}</small></a> 
- {% endif %}
-{% endfor %}
-</ul> 
+<a href = "/hub/{{apc}}"> <button class="btn btn-primary">To {{apc}} hub</button></a>
+<h2 class = 'text-center'>{{apc}} Posts</h2>
+<div class = 'card'>
+    
+    <ul class="list-group list-group-flush ">
+         <a href = '/createnewpost'> <button class="btn btn-secondary btn-lg btn-block">Make A New Post</button></a>
+        
+        <a href = 'Free'> <button class="btn btn-danger btn-lg btn-block">Free</button></a>
+        
+        
+        <a href = "ForSale"> <button class="btn btn-warning btn-lg btn-block">For Sale</button></a>
+        
+        
+        <a href =  "CurrencyExchange"> <button class="btn btn-info btn-lg btn-block">Currency Exchange</button></a>
+        
+        
+        <a href = 'Wanted'> <button class="btn btn-success btn-lg btn-block">Wanted</button></a>
+        
+        
+        
+    </ul>
+    
+</div>
+<br>
+
+<div class = 'card'>
+    <h2 class = 'text-center'>All {{apc}} Posts</h2>
+    <ul class="list-group list-group-flush">
+    {% for x in end %}
+    {% if x.active %}
+    <li class="list-group-item list-group-item-action list-group-item-info">
+        <a href = '/post/{{x.id}}/' > <strong>{{x.header}}</strong> <small>{{x.time}}</small> <small>{{x.poster.username}}</small> <div class="pull-right">Cost: {{x.cost}}</div> </a>
+    </li>
+     {%else%}
+     <a href = '/post/{{x.id}}/' class="list-group-item list-group-item-action list-group-item-danger"> <strong>{{x.header}}</strong> <small>{{x.time}}</small> <small>{{x.poster.username}}</small></a>
+     {% endif %}
+    {% endfor %}
+        </ul>
+    
+</div>
 {% csrf_token %}
 
 {% endblock %} 

@@ -9,8 +9,15 @@ import operator
 # Create your views here.
 urlToCAT = {"DELAY": "Delay Info", "THINGS":"Things to do in the Area", "AIRPORT":"Airport Tips/Hacks", "NTR": "NTR"}
 airportMapImages = {"PDX": 'https://i.pinimg.com/originals/26/00/9d/26009df1156c2ddab1ba893eadfd42d2.jpg',}
+urlToClassCat = {"Free" : 'Free', "ForSale": 'For Sale', "CurrencyExchange" :"Currency Exchange",'Wanted' : 'Wanted'}
 def home(request):
-    return render(request, 'homePage.html')
+    if request.method == 'POST':
+        a = apcSearch(request.POST)
+        c = a.data['apc']
+        return redirect('/hub/'+ c)
+    else:
+
+        return render(request, 'homePage.html',{'form':apcSearch})
 
 
 def posting(request):
@@ -22,7 +29,7 @@ def posting(request):
 
             a.airport = str(a.airport).upper()
             a.save()
-            return redirect('viewposts')
+            return redirect('/post/' + str(a.id))
         else:
             return render(request, 'newposting.html',{'form': postingForm})
     else:
@@ -56,7 +63,7 @@ def viewAPCPosts(request, string):
     a = string.upper()
     end = []
     for x in Posting.objects.all():
-        if a == x.airport:
+        if a == x.airport and x.active:
             end.append(x)
     return render(request, 'allposts.html', {'end': end, 'apc': a})
 
@@ -89,7 +96,7 @@ def viewpost(request, id):
                     if int(id) is x.id:
                         x.active = not (x.active)
                         x.save()
-                        return redirect('viewposts')
+                        return redirect('myposts')
                 return redirect('home')
         else:
 
@@ -132,7 +139,7 @@ def viewpost(request, id):
 def getAllPostsAPC(apc):
     end = []
     for x in Posting.objects.all():
-        if x.airport == apc:
+        if x.airport == apc and x.active == True:
             end.append(x)
 
 def Catergorize(Msg, listy, S):
@@ -149,7 +156,19 @@ def Catergorize(Msg, listy, S):
         listy.append([Msg])
 
 
+def viewcaterPosts(request, string, cater):
+    catergo = cater
+    catergo = urlToClassCat[catergo]
+    APC = string.upper()
+    end = []
+    for x in Posting.objects.all():
+        try:
+            if x.airport == APC and x.catergory == catergo and x.active == True:
+                end.append(x)
+        except AttributeError:
+            print(x)
 
+    return render(request, 'allpostscater.html', {"APC": APC, "end": end, 'catergo': catergo})
 def viewMyPost(request):
     end = []
     for x in Posting.objects.all():
@@ -168,6 +187,8 @@ def forumsMainPage(request):
 def forumAPCPage(request, string):
     APC = string.upper()
     end = []
+    if APC == "RULES":
+        return redirect('/forumPost/7/')
     for x in forum_topic.objects.all():
         if x.airport == APC:
             end.append(x)
@@ -256,4 +277,5 @@ def apcExtrasC(request, string, cater):
     catergo = cater.upper()
     if catergo == 'TERMINALMAP':
         return render(request, 'apcTerminalMap.html', {'APC': APC, 'img' : airportMapImages[APC]})
-
+    elif catergo == 'COUPONS':
+        print('coming soon')

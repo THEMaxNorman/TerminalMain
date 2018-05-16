@@ -12,11 +12,10 @@ class SignUpForm(UserCreationForm):
 
 
 class postingForm(forms.ModelForm):
-    catergo = (('Free', "Free"), ('For Sale', "For Sale"), ('Currency Exchange', "Currency Exchange"), ("Wanted", "Wanted"),)
-    catergo = forms.ChoiceField(choices=catergo, widget=forms.RadioSelect())
+
     class Meta():
         model = Posting
-        fields = ('header','catergo','body', 'airport')
+        fields = ('header','catergory','airport','body','cost' )
 class message(forms.ModelForm):
     class Meta():
         model = Massage

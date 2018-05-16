@@ -11,12 +11,19 @@ from django.dispatch import receiver
 # Create your models here.
 class Posting(models.Model):
     poster = models.ForeignKey(User, on_delete=models.CASCADE, null = True)
-    header = models.CharField(max_length=25, blank = True)
+    header = models.CharField(max_length=35, blank = True)
     body = models.TextField(blank = True)
     time = models.DateTimeField(auto_now_add=True, null = True)
     active = models.BooleanField(default = True)
-    catergory = models.CharField(blank = True, max_length = 40)
+    catergo = (
+        ('Free', "Free"),
+        ('For Sale', "For Sale"),
+        ('Currency Exchange', "Currency Exchange"),
+        ("Wanted", "Wanted")
+    )
+    catergory = models.CharField(blank = True, max_length = 40, choices = catergo)
     airport = models.CharField(blank = True, max_length = 3)
+    cost = models.CharField(blank = True, max_length = 20)
 
 class Massage(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE, null = True, related_name='+')
@@ -37,6 +44,7 @@ class forum_topic(models.Model):
         ("NTR", "NTR")
     )
     catregory = models.CharField(max_length = 50, choices = catergories)
+    active = models.BooleanField(default=True)
 class forum_post(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='+')
     receiver = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='+')
@@ -44,6 +52,7 @@ class forum_post(models.Model):
     subject = models.ForeignKey(forum_topic, on_delete=models.CASCADE, null=True,)
     time = models.DateTimeField(auto_now_add=True, null=True)
     sticky = models.BooleanField(default = False)
+    active = models.BooleanField(default=True)
 
 
 

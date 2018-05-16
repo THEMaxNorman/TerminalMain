@@ -37,11 +37,13 @@ urlpatterns = [
     url(r'^forumPost/(\d+)/$', views.viewForum, name='post'),
     url(r'^reply/(\d+)/$', views.postReply, name='reply'),
     url('^classified/(?P<string>[\w\-]+)/$', views.viewAPCPosts, name = 'apcClass'),
+    url('^classified/(?P<string>[\w\-]+)/(?P<cater>[\w\-]+)', views.viewcaterPosts, name = 'caterClass'),
     url('^forum/(?P<string>[\w\-]+)/(?P<cater>[\w\-]+)', views.catergoryOrg, name = 'caterView'),
     url(r'^home', views.home, name = 'home'),
     url('^hub/(?P<string>[\w\-]+)/$', views.viewAPCHub, name = 'apcHub'),
     url('^extras/(?P<string>[\w\-]+)/$', views.apcExtras, name = 'apcExtra'),
     url('^extras/(?P<string>[\w\-]+)/(?P<cater>[\w\-]+)', views.apcExtrasC, name = 'apcExtraC'),
+
 
 
 ]

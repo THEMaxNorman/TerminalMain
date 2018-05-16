@@ -11,13 +11,24 @@
         <div class = 'card'>
             <p class = "text-center"> We organize our forums by their Aiport Code (i.e PDX, LAX, MSP) so search here:</p>
             <div class = "text-center">
-            <form method = 'post'>
-                {% csrf_token %}
-                {{form}}
-                    <button class ="btn btn-outline-success " type="submit">Search</button>
-                    </form>
+                <form class="form-inline" method = 'post' >
+                    {% csrf_token %}
+                    {% for field in form %}
+                    
+                    <div class="form-group" style = 'margin: 0 auto;'>
+                        {% load widget_tweaks %}
+                        
+                        {% render_field field class="form-control mr-sm-2" type="search" placeholder="Search"%}
+                        
+                        
+                        
+                        
+                        {% endfor %}
+                        <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+                    </div>
+                </form>
             <div>
-                <p>Make sure you read the forums rules <a href = '#'>here</a> before you start posting!</p>
+                <p>Make sure you read the forums rules <a href = '/forum/rules'>here</a> before you start posting!</p>
             
         </div>
 

@@ -1,33 +1,37 @@
  {% extends 'base.html' %}
 
 {% block content %}
-<h1 class = 'center-text'>Welcome To Terminal</h1>
+<h1 class = 'center-text'>Welcome To TerminalX</h1>
+<p class = 'small'>Where travelers travel</p>
 
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <div class = 'card'>
-                TERMINAL MAPS
-            </div>
-                </div>
-        <div class="carousel-item">
-            <div class = 'card'>
-                Check out everything!!
-                </div>
-                </div>
-        <div class="carousel-item">
-            <div class = 'card'>
-                Some other stuff
-            </div>
-                </div>
+
+    <div class = 'card'>
+        <div class = "text-center">
+            <h2> How this works:</h2>
+            <p>TerminalX is organized by <strong>Hubs</strong>.
+            In the hub you can access the airports classifieds, extra, and forums. These can also be accsessed via the top menu</p>
+            <br>
+            <p>Go to an Airports hub based on Airport code (i.e. PDX, LAX, MSP)</p>
+           
+                <form class="form-inline" method = 'post' >
+                    {% csrf_token %}
+                    {% for field in form %}
+                
+                    <div class="form-group" style = 'margin: 0 auto;'>
+                        {% load widget_tweaks %}
+                    
+                        {% render_field field class="form-control mr-sm-2" type="search" placeholder="Search"%}
+                    
+                    
+                    
+                    
+                    {% endfor %}
+                    <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+                    </div>
+                </form>
+            <br>
+        
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
+    
+
 {% endblock %}
